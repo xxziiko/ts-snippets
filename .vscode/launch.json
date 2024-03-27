@@ -5,8 +5,10 @@
       "name": "Debug Current ts file",
       "type": "node",
       "request": "launch",
-      "program": "${workspaceRoot}/node_modules/ts-node/dist/bin.js",
-      "args": ["${relativeFile}"],
+      "program": "${workspaceRoot}/node_modules/.bin/tsx",
+      "args": [
+        "${relativeFile}"
+      ],
       "cwd": "${workspaceRoot}"
     }
   ]
