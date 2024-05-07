@@ -1,10 +1,18 @@
 // https://school.programmers.co.kr/learn/courses/30/lessons/12945
 
-function solution(n) {
-  let fibonacci = [0, 1];
-  for (let i = 2; i <= n; i++)
-    // 오버플로우가 일어나지 않게 모든 단계에서 나누기
-    fibonacci[i] = (fibonacci[i - 1] + fibonacci[i - 2]) % 1234567;
+function* fibonacciGenerator() {
+	let [a, b] = [0, 1];
+	while (true) {
+		yield a;
+		[a, b] = [b, (a + b) % 1234567];
+	}
+}
 
-  return fibonacci[n];
+function solution(n) {
+	const fibonacci = fibonacciGenerator();
+
+	for (let i = 0; i <= n; i++) {
+		const result = fibonacci.next().value;
+		if (i === n) return result;
+	}
 }
