@@ -9,5 +9,5 @@ function solution(s) {
 			stack.splice(-2, 2);
 	}
 
-	return stack.length ? 0 : 1;
+	return +!stack.length;
 }
