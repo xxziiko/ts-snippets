@@ -4,6 +4,7 @@ function solution(s) {
 	const stack = [];
 
 	for (const i of s) {
+		if (s[0] === ")") return false;
 		if (stack.at(-1) === "(" && i === ")") stack.pop();
 		else stack.push(i);
 	}
