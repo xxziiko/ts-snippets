@@ -2,8 +2,7 @@
 
 function solution(s) {
 	const stack = [];
-
-	if (s[0] === ")" || s.at(-1) === "(") return false;
+	if (s.length % 2 === 1 || s[0] === ")") return false;
 
 	for (const i of s) {
 		if (stack.at(-1) === "(" && i === ")") stack.pop();
