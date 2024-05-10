@@ -12,8 +12,7 @@
 
 function solution(n) {
 	const fibonacci = fibonacciGenerator();
-
-	return nth(n, fibonacci);
+	return nth(n + 1, fibonacci);
 }
 
 function* fibonacciGenerator() {
