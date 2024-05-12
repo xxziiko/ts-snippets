@@ -1,14 +1,11 @@
 // https://school.programmers.co.kr/learn/courses/30/lessons/12980
 
-function solution(n) {
-	let k = 0;
-	let temp = n;
+const countDivide = (k, n) => {
+	if (n === 0) return k;
 
-	while (true) {
-		if (temp === 0) return k;
-		if (temp % 2 === 1) {
-			k += 1;
-			temp -= 1;
-		} else temp /= 2;
-	}
+	return n % 2 === 1 ? countDivide(k + 1, n - 1) : countDivide(k, n / 2);
+};
+
+function solution(n) {
+	return countDivide(0, n);
 }
