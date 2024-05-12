@@ -5,19 +5,20 @@ function solution(n, words) {
 	let number = 0;
 	const usedWord = [];
 
-	for (let i = 0; i < words.length; i++) {
+	for (const word of words) {
 		if (number === n) {
-			number = 1;
-			count++;
-		} else number++;
+			number = 0;
+			count += 1;
+		}
+		number += 1;
 
 		if (
-			usedWord.includes(words[i]) ||
-			(!!usedWord.length && usedWord.at(-1).at(-1) !== words[i].at(0))
+			usedWord.includes(word) ||
+			(!!usedWord.length && usedWord.at(-1).at(-1) !== word.at(0))
 		)
 			return [number, count];
 
-		usedWord.push(words[i]);
+		usedWord.push(word);
 	}
 
 	return [0, 0];
