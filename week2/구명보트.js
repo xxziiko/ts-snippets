@@ -8,11 +8,10 @@ function solution(people, limit) {
 	people.sort((a, b) => b - a);
 	while (left <= right) {
 		if (people[left] + people[right] <= limit) {
-			left += 1;
 			right -= 1;
-		} else {
-			left += 1;
 		}
+
+		left += 1;
 		count += 1;
 	}
 
