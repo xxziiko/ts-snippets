@@ -3,7 +3,7 @@
 function solution(s) {
 	const stack = [];
 
-	if (s[0] === ")" || s.length % 2 === 1) return false;
+	if (s.length % 2 === 1) return false;
 
 	for (const i of s) {
 		if (stack[0] === ")") return false;
@@ -13,3 +13,5 @@ function solution(s) {
 
 	return stack.length === 0;
 }
+
+console.log(solution("))("));
