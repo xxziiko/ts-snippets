@@ -3,10 +3,10 @@
 function solution(s) {
 	const stack = [];
 
-	if (s[0] === ")" || s.match(/\(/g)?.length !== s.match(/\)/g)?.length)
-		return false;
+	if (s[0] === ")" || s.length % 2 === 1) return false;
 
 	for (const i of s) {
+		if (stack[0] === ")") return false;
 		if (stack.at(-1) === "(" && i === ")") stack.pop();
 		else stack.push(i);
 	}
