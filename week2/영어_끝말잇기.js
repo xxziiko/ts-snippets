@@ -3,7 +3,7 @@
 function solution(n, words) {
 	let count = 1;
 	let number = 0;
-	const usedWord = [];
+	const usedWords = [];
 
 	for (const word of words) {
 		if (number === n) {
@@ -13,12 +13,12 @@ function solution(n, words) {
 		number += 1;
 
 		if (
-			usedWord.includes(word) ||
-			(!!usedWord.length && usedWord.at(-1).at(-1) !== word.at(0))
+			usedWords.includes(word) ||
+			(!!usedWords.length && usedWords.at(-1).at(-1) !== word.at(0))
 		)
 			return [number, count];
 
-		usedWord.push(word);
+		usedWords.push(word);
 	}
 
 	return [0, 0];
