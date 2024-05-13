@@ -13,5 +13,3 @@ function solution(s) {
 
 	return stack.length === 0;
 }
-
-console.log(solution("))("));
