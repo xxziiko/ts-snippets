@@ -1,7 +1,5 @@
 // https://school.programmers.co.kr/learn/courses/30/lessons/131127
 
-const getLength = (array) => array.length;
-
 function solution(want, numbers, discount) {
 	let count = 0;
 
@@ -12,7 +10,7 @@ function solution(want, numbers, discount) {
 			if (want.includes(item)) map.set(item, (map.get(item) ?? 0) + 1);
 
 			if (
-				getLength([...map]) === getLength(want) &&
+				map.size === want.length &&
 				[...map.keys()].every(
 					(product) => map.get(product) === numbers[want.indexOf(product)],
 				)
