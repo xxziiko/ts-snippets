@@ -1,3 +1,5 @@
+// https://school.programmers.co.kr/learn/courses/30/lessons/17680
+
 function solution(cacheSize: number, cities: string[]) {
 	const cache: string[] = [];
 	let result = 0;
