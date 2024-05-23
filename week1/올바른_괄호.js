@@ -13,16 +13,12 @@ function solution(s) {
 	// O(N)
 	let openCount = 0;
 	for (const i of s) {
-		if (i === "(") {
-			openCount++;
-		} else {
-			if (openCount > 0) {
-				openCount--;
-			} else {
-				return false;
-			}
+		if (i === "(") openCount++;
+		else {
+			if (openCount === 0) return false;
+
+			openCount--;
 		}
 	}
-
 	return openCount === 0;
 }
