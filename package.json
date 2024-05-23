@@ -11,6 +11,7 @@
 	"license": "ISC",
 	"devDependencies": {
 		"@biomejs/biome": "^1.6.3",
+		"@types/lodash": "^4.17.4",
 		"tsx": "^4.7.1",
 		"typescript": "^5.4.3"
 	},
