@@ -1,4 +1,5 @@
 //  https://school.programmers.co.kr/learn/courses/30/lessons/17681
+import _ from "lodash";
 
 const replaceString = (n: number, arr: number[]) => {
 	const result = [];
@@ -10,23 +11,18 @@ const replaceString = (n: number, arr: number[]) => {
 			else string += " ";
 		}
 
-		result.push(string.padStart(n));
+		result.push(string.padStart(n).split(""));
 	}
 	return result;
 };
 
 function solution(n: number, arr1: number[], arr2: number[]) {
-	const replaceArr1 = replaceString(n, arr1);
-	const replaceArr2 = replaceString(n, arr2);
-	const answer = [];
+	const map1 = replaceString(n, arr1);
+	const map2 = replaceString(n, arr2);
 
-	for (const [i, string] of replaceArr1.entries()) {
-		let temp = "";
-		for (let j = 0; j < n; j++) {
-			if (string[j] !== replaceArr2[i][j]) temp += "#";
-			else temp += string[j];
-		}
-		answer.push(temp);
-	}
+	const answer = _.zipWith(map1, map2, (str1, str2) =>
+		str1.map((char, index) => (char !== str2[index] ? "#" : char)).join(""),
+	);
+
 	return answer;
 }
