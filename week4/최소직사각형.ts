@@ -6,8 +6,10 @@ function solution(sizes: number[][]) {
 
 	for (const size of sizes) {
 		size.sort((a, b) => b - a);
-		if (maxWidth < size[0]) maxWidth = size[0];
-		if (maxHeight < size[1]) maxHeight = size[1];
+		const [width, height] = size;
+
+		if (maxWidth < width) maxWidth = width;
+		if (maxHeight < height) maxHeight = height;
 	}
 
 	return maxWidth * maxHeight;
