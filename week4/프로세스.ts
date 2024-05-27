@@ -5,10 +5,8 @@ function solution(priorities: number[], location: number) {
 	let order = 0;
 
 	while (priorities.length > 0) {
-		const current = queue.shift() ?? {
-			priority: queue[0].priority,
-			index: queue[0].index,
-		};
+		const current = queue.shift();
+		if (!current) break;
 
 		if (queue.some((process) => process.priority > current.priority))
 			queue.push(current);
