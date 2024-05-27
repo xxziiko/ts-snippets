@@ -3,9 +3,9 @@
 function solution(numbers: number[]) {
 	const set = new Set<number>();
 
-	for (let i = 0; i < numbers.length; i++) {
-		for (let j = i + 1; j < numbers.length; j++) {
-			set.add(numbers[i] + numbers[j]);
+	for (const [i, num1] of numbers.entries()) {
+		for (const [j, num2] of numbers.entries()) {
+			if (i < j) set.add(num1 + num2);
 		}
 	}
 
