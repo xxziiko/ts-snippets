@@ -8,8 +8,8 @@ function solution(sizes: number[][]) {
 		size.sort((a, b) => b - a);
 		const [width, height] = size;
 
-		if (maxWidth < width) maxWidth = width;
-		if (maxHeight < height) maxHeight = height;
+		maxWidth = Math.max(width, maxWidth);
+		maxHeight = Math.max(height, maxHeight);
 	}
 
 	return maxWidth * maxHeight;
