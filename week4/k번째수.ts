@@ -2,8 +2,7 @@
 
 function solution(array: number[], commands: number[][]) {
 	const answer = [];
-	for (const command of commands) {
-		const [index, j, k] = command;
+	for (const [index, j, k] of commands) {
 		const temp = array.slice(index - 1, j).sort((a, b) => a - b);
 		answer.push(temp[k - 1]);
 	}
