@@ -1,15 +1,19 @@
 // https://school.programmers.co.kr/learn/courses/30/lessons/12926
 
-const getASCII = (
-	charCode: number,
-	ASCII: number,
-	ASCII_1: number,
-	ASCII_2: number,
+const getASCIICode = (
+	currentCode: number,
+	newCode: number,
+	rangeStart: number,
+	rangeEnd: number,
 ) => {
-	if (charCode >= ASCII_1 && charCode <= ASCII_2 && ASCII > ASCII_2)
-		return ASCII_1 + (ASCII - (ASCII_2 + 1));
+	if (
+		currentCode >= rangeStart &&
+		currentCode <= rangeEnd &&
+		newCode > rangeEnd
+	)
+		return rangeStart + (newCode - (rangeEnd + 1));
 
-	return ASCII;
+	return newCode;
 };
 
 function solution(s: string, n: number) {
@@ -21,12 +25,12 @@ function solution(s: string, n: number) {
 
 	for (const char of s) {
 		const charCode = char.charCodeAt(0);
-		let ASCII = charCode + n;
+		let newCode = charCode + n;
 
-		ASCII = getASCII(charCode, ASCII, ASCII_A, ASCII_Z);
-		ASCII = getASCII(charCode, ASCII, ASCII_a, ASCII_z);
+		newCode = getASCIICode(charCode, newCode, ASCII_A, ASCII_Z);
+		newCode = getASCIICode(charCode, newCode, ASCII_a, ASCII_z);
 
-		if (char !== " ") result += String.fromCharCode(ASCII);
+		if (char !== " ") result += String.fromCharCode(newCode);
 		else result += char;
 	}
 	return result;
