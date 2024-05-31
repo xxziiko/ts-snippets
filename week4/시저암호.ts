@@ -1,19 +1,19 @@
 // https://school.programmers.co.kr/learn/courses/30/lessons/12926
 
-const getASCIICode = (
-	currentCode: number,
-	newCode: number,
+const wrapAsciiCodeInRange = (
 	rangeStart: number,
 	rangeEnd: number,
+	currentCode: number,
+	targetCode: number,
 ) => {
 	if (
 		currentCode >= rangeStart &&
 		currentCode <= rangeEnd &&
-		newCode > rangeEnd
+		targetCode > rangeEnd
 	)
-		return rangeStart + (newCode - (rangeEnd + 1));
+		return rangeStart + (targetCode - (rangeEnd + 1));
 
-	return newCode;
+	return targetCode;
 };
 
 function solution(s: string, n: number) {
@@ -27,8 +27,8 @@ function solution(s: string, n: number) {
 		const charCode = char.charCodeAt(0);
 		let newCode = charCode + n;
 
-		newCode = getASCIICode(charCode, newCode, ASCII_A, ASCII_Z);
-		newCode = getASCIICode(charCode, newCode, ASCII_a, ASCII_z);
+		newCode = wrapAsciiCodeInRange(ASCII_A, ASCII_Z, charCode, newCode);
+		newCode = wrapAsciiCodeInRange(ASCII_a, ASCII_z, charCode, newCode);
 
 		if (char !== " ") result += String.fromCharCode(newCode);
 		else result += char;
