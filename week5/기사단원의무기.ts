@@ -9,7 +9,7 @@ function solution(number: number, limit: number, power: number) {
 		for (let j = 1; j <= Math.sqrt(i); j++) {
 			if (i % j === 0) {
 				count++;
-				if (j !== Math.floor(i / j)) count++;
+				if (j !== i / j) count++;
 			}
 		}
 
