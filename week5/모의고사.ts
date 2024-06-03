@@ -17,8 +17,8 @@ function solution(answers: number[]) {
 	}
 
 	const max = Math.max(...scores);
-	return scores.reduce<number[]>((result, score, index) => {
-		if (score === max) result.push(index + 1);
-		return result;
-	}, []);
+	return scores.flatMap((el, index) => {
+		if (el === max) return index + 1;
+		return [];
+	});
 }
