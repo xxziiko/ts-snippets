@@ -12,13 +12,9 @@ function solution(answers: number[]) {
 			if (Number(temp[0]) === answer) score++;
 			temp = temp.slice(1) + temp.charAt(0);
 		}
-
 		scores.push(score);
 	}
 
 	const max = Math.max(...scores);
-	return scores.flatMap((el, index) => {
-		if (el === max) return index + 1;
-		return [];
-	});
+	return scores.flatMap((el, index) => (el === max ? [index + 1] : []));
 }
