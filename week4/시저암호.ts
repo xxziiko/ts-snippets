@@ -4,7 +4,7 @@ function solution(s: string, n: number) {
 	const ASCII_A = "A".charCodeAt(0);
 	const ASCII_Z = "Z".charCodeAt(0);
 	const ASCII_a = "a".charCodeAt(0);
-	const ALPHABET_COUNT = 26;
+	const ALPHABET_COUNT = ASCII_Z - ASCII_A + 1;
 	let result = "";
 
 	for (const char of s) {
@@ -22,5 +22,3 @@ function solution(s: string, n: number) {
 
 	return result;
 }
-
-console.log(solution("a B z", 4));
