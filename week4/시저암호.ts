@@ -8,16 +8,19 @@ function solution(s: string, n: number) {
 	let result = "";
 
 	for (const char of s) {
-		const charCode = char.charCodeAt(0);
-		const isUpper = charCode >= ASCII_A && charCode <= ASCII_Z;
-		const index = isUpper ? charCode % ASCII_A : charCode % ASCII_a;
-		const baseCharCode = isUpper ? ASCII_A : ASCII_a;
+		if (char !== " ") {
+			const charCode = char.charCodeAt(0);
+			const isUpper = charCode >= ASCII_A && charCode <= ASCII_Z;
+			const index = isUpper ? charCode % ASCII_A : charCode % ASCII_a;
+			const baseCharCode = isUpper ? ASCII_A : ASCII_a;
 
-		result +=
-			char !== " "
-				? String.fromCharCode(baseCharCode + ((index + n) % ALPHABET_COUNT))
-				: char;
+			result += String.fromCharCode(
+				baseCharCode + ((index + n) % ALPHABET_COUNT),
+			);
+		} else result += char;
 	}
 
 	return result;
 }
+
+console.log(solution("a B z", 4));
