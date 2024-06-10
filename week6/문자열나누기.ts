@@ -1,23 +1,22 @@
 // https://school.programmers.co.kr/learn/courses/30/lessons/140108
 
 function solution(s: string) {
-	let firstCharCount = 0;
-	let lastCharCount = 0;
+	let currentCharCount = 0;
+	let otherCharCount = 0;
 	let count = 0;
-	let firstChar = s[0];
+	let index = 0;
 
 	for (const [i, char] of [...s].entries()) {
-		if (firstChar === char) firstCharCount++;
-		else lastCharCount++;
+		const nextIndex = i + 1;
+		if (char !== s[index]) otherCharCount++;
+		else currentCharCount++;
 
-		if (firstCharCount === lastCharCount) {
+		if (currentCharCount === otherCharCount) {
 			count++;
-			firstCharCount = 0;
-			lastCharCount = 0;
-			if (i + 1 < s.length) firstChar = s[i + 1];
+			index = nextIndex;
 		}
 	}
-	if (firstCharCount !== 0 || lastCharCount !== 0) count++;
+	if (currentCharCount !== otherCharCount) count++;
 
 	return count;
 }
