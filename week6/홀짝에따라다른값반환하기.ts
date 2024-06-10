@@ -2,10 +2,9 @@
 
 function solution(n: number) {
 	let result = 0;
-	for (let i = 1; i <= n; i++) {
-		if (n % 2 === 1 && i % 2 === 1) result += i;
-		if (n % 2 === 0 && i % 2 === 0) result += i * i;
-	}
+
+	if (n % 2 === 1) for (let i = 1; i <= n; i += 2) result += i;
+	else for (let i = 2; i <= n; i += 2) result += i * i;
 
 	return result;
 }
