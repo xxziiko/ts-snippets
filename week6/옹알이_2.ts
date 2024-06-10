@@ -5,20 +5,22 @@ function solution(babbling: string[]) {
 	let result = 0;
 
 	for (const originalWord of babbling) {
-		let word = "";
-		let removedWord = originalWord;
+		let tempWord = originalWord;
+		let prevWord = "";
 
-		for (const char of originalWord) {
-			word += char;
-
-			const findIndex = strings.indexOf(word);
-			if (findIndex !== -1) {
-				removedWord = removedWord.slice(word.length);
-				if (word !== removedWord.slice(0, word.length)) word = "";
+		while (tempWord.length > 0) {
+			let found = false;
+			for (const string of strings) {
+				if (tempWord.startsWith(string) && string !== prevWord) {
+					prevWord = string;
+					tempWord = tempWord.slice(string.length);
+					found = true;
+				}
 			}
+			if (!found) break;
 		}
 
-		if (!removedWord) result++;
+		if (!tempWord) result++;
 	}
 
 	return result;
