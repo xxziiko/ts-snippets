@@ -1,27 +1,21 @@
 // https://school.programmers.co.kr/learn/courses/30/lessons/133499
+import _ from "lodash";
 
-function solution(babbling: string[]) {
-	const strings = ["aya", "ye", "woo", "ma"];
-	let result = 0;
+function solution(babblings: string[]) {
+	const words = ["aya", "ye", "woo", "ma"];
 
-	for (const originalWord of babbling) {
-		let tempWord = originalWord;
+	return _.countBy(babblings, (babbling) => {
 		let prevWord = "";
+		while (babbling) {
+			const matchedWord = words.find(
+				(word) => prevWord !== word && babbling.startsWith(word),
+			);
+			if (!matchedWord) return false;
 
-		while (tempWord.length > 0) {
-			let found = false;
-			for (const string of strings) {
-				if (tempWord.startsWith(string) && string !== prevWord) {
-					prevWord = string;
-					tempWord = tempWord.slice(string.length);
-					found = true;
-				}
-			}
-			if (!found) break;
+			babbling = babbling.slice(matchedWord.length);
+			prevWord = matchedWord;
 		}
 
-		if (!tempWord) result++;
-	}
-
-	return result;
+		return true;
+	}).true;
 }
