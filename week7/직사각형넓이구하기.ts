@@ -1,8 +1,10 @@
 // https://school.programmers.co.kr/learn/courses/30/lessons/120860
 
 function solution(dots: number[][]) {
-	const x = [...new Set(dots.map((x) => x[0]))];
-	const y = [...new Set(dots.map((y) => y[1]))];
+	const xs = [...new Set(dots.map((x) => x[0]))];
+	const ys = [...new Set(dots.map((y) => y[1]))];
+	const [x1, x2] = xs;
+	const [y1, y2] = ys;
 
-	return Math.abs((x[0] - x[1]) * (y[0] - y[1]));
+	return Math.abs((x1 - x2) * (y1 - y2));
 }
