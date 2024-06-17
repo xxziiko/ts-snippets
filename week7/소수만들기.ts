@@ -6,16 +6,28 @@ const isPrime = (num: number) => {
 	return true;
 };
 
+const sumNumbers: number[] = [];
+const combinations: number[] = [];
+const getSumCombination = (numbers: number[], count: number) => {
+	const nextCount = count - 1;
+
+	if (count === 0) {
+		const sum = combinations.reduce((acc, num) => acc + num, 0);
+		sumNumbers.push(sum);
+		return;
+	}
+
+	for (const [i, number] of numbers.entries()) {
+		combinations.push(number);
+		getSumCombination(numbers.slice(i + 1), nextCount);
+		combinations.pop(); // 백트래킹
+	}
+};
+
 function solution(nums: number[]) {
 	let count = 0;
-	const sumNumbers = [];
-	for (let i = 0; i < nums.length - 2; i++) {
-		for (let j = i + 1; j < nums.length - 1; j++) {
-			for (let k = j + 1; k < nums.length; k++) {
-				sumNumbers.push(nums[i] + nums[j] + nums[k]);
-			}
-		}
-	}
+
+	getSumCombination(nums, 3);
 
 	for (const number of sumNumbers) {
 		if (isPrime(number)) count++;
