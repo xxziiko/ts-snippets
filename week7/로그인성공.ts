@@ -4,10 +4,7 @@ function solution(id_pw: string[], db: string[][]) {
 	const [inputId, inputPw] = id_pw;
 
 	for (const [id, pw] of db) {
-		if (inputId === id) {
-			if (inputPw !== pw) return "wrong pw";
-			return "login";
-		}
+		if (inputId === id) return inputPw !== pw ? "wrong pw" : "login";
 	}
 
 	return "fail";
