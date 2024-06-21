@@ -4,7 +4,8 @@ function solution(chicken: number): number {
 	const serviceCount = 10;
 	if (chicken < serviceCount) return 0;
 
-	const freeChicken = Math.floor(chicken / 10);
+	const freeChicken = Math.floor(chicken / serviceCount);
 	const restCoupon = (chicken % serviceCount) + freeChicken;
-	return Math.floor(chicken / 10) + solution(restCoupon);
+
+	return freeChicken + solution(restCoupon);
 }
