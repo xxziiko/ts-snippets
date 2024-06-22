@@ -25,9 +25,12 @@ const getSumCombinations = (numbers: number[], count: number) => {
 		}
 
 		for (const [i, number] of numbers.entries()) {
-			combinations.push(number);
-			go(numbers.slice(i + 1), count - 1, combinations, sumNumbers);
-			combinations.pop(); // 백트래킹
+			go(
+				numbers.slice(i + 1),
+				count - 1,
+				combinations.concat(number),
+				sumNumbers,
+			);
 		}
 	}
 
