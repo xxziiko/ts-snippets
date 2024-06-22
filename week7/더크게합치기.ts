@@ -1,9 +1,11 @@
 // https://school.programmers.co.kr/learn/courses/30/lessons/181939
 
 function solution(a: number, b: number) {
-	const ab = String(a) + String(b);
-	const ba = String(a) + String(b);
-	const isSameString = ab.split("").every((char) => ab.charAt(0) === char);
+	const numberAsString = (num1: number, num2: number) =>
+		String(num1) + String(num2);
 
-	return isSameString ? Number(ab) : Math.max(Number(ab), Number(ba));
+	const ab = numberAsString(a, b);
+	const ba = numberAsString(b, a);
+
+	return ab > ba ? Number(ab) : Number(ba);
 }
