@@ -28,7 +28,7 @@ const getSumCombinations = (numbers: number[], count: number) => {
 			go(
 				numbers.slice(i + 1),
 				count - 1,
-				combinations.concat(number),
+				combinations.concat([number]),
 				sumNumbers,
 			);
 		}
