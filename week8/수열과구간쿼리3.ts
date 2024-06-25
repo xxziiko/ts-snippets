@@ -2,9 +2,7 @@
 
 function solution(arr: number[], queries: [number, number][]) {
 	for (const [i, j] of queries) {
-		const temp = arr[i];
-		arr[i] = arr[j];
-		arr[j] = temp;
+		[arr[i], arr[j]] = [arr[j], arr[i]];
 	}
 
 	return arr;
