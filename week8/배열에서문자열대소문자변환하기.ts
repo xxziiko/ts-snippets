@@ -2,6 +2,6 @@
 
 function solution(strArr: string[]) {
 	return strArr.map((string, index) => {
-		return index % 2 === 1 ? string.toUpperCase() : string.toLowerCase();
+		index % 2 === 1 ? string.toUpperCase() : string.toLowerCase();
 	});
 }
