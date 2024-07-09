@@ -6,11 +6,8 @@ function solution(code: string) {
 
 	for (const [i, char] of [...code].entries()) {
 		if (char === "1") {
-			if (mode === 1) mode = 0;
-			else mode = 1;
-		} else {
-			if (i % 2 === mode) ret += char;
-		}
+			mode = !mode ? 1 : 0;
+		} else if (i % 2 === mode) ret += char;
 	}
 
 	return !ret ? "EMPTY" : ret;
