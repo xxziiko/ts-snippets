@@ -4,11 +4,9 @@ function solution(polynomial: string) {
 	let sumCoefficientOfX = 0;
 	let sumConstant = 0;
 
-	const terms = polynomial.split("+");
-
-	for (const term of terms) {
+	for (const term of polynomial.split("+")) {
 		if (term.includes("x")) {
-			sumCoefficientOfX += Number(term.replace("x", "")) || 1;
+			sumCoefficientOfX += Number(term.split("x")[0]) || 1;
 		} else sumConstant += Number(term);
 	}
 
@@ -19,8 +17,7 @@ function solution(polynomial: string) {
 	}
 
 	if (sumConstant !== 0) {
-		if (result) result += " + ";
-
+		result += result && " + ";
 		result += sumConstant;
 	}
 
