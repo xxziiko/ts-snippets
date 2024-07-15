@@ -1,26 +1,31 @@
 // https://school.programmers.co.kr/learn/courses/30/lessons/87946
 
-function permutations<T>(xs: T[][], pick: number): T[][][] {
-	const result = [];
+function* map<T, U>(callback: (value: T) => U, iter: Iterable<T>) {
+	for (const a of iter) yield callback(a);
+}
 
-	if (pick === 1) return xs.map((el) => [el]);
-
-	for (const [i, fixed] of xs.entries()) {
-		const rest = [...xs.slice(0, i), ...xs.slice(i + 1)];
-		const permutation = permutations(rest, pick - 1);
-		const attached = permutation.map((el) => [fixed, ...el]);
-
-		result.push(...attached);
+function* permutationG<T>(xs: T[], pick: number): Generator<T[]> {
+	if (pick === 0) {
+		yield [];
+		return;
 	}
 
-	return result;
+	if (!xs.length) return;
+
+	for (const [i, x] of xs.entries()) {
+		const rest = [...xs.slice(0, i), ...xs.slice(i + 1)];
+		yield* map(
+			(permutation) => [x, ...permutation],
+			permutationG(rest, pick - 1),
+		);
+	}
 }
 
 function solution(k: number, dungeons: [number, number][]) {
-	const permutation = permutations(dungeons, dungeons.length);
+	const permutationsGen = permutationG(dungeons, dungeons.length);
 	let result = 0;
 
-	for (const nums of permutation) {
+	for (const nums of permutationsGen) {
 		let count = 0;
 		let hp = k;
 		for (const [a, b] of nums) {
