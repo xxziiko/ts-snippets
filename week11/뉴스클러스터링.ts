@@ -1,28 +1,21 @@
 // https://school.programmers.co.kr/learn/courses/30/lessons/17677
 
-const generateBigrams = (string: string) => {
-	const lowercaseString = string.toLocaleLowerCase();
-	const specialCharacterRegex = /[^a-z]/g; // 소문자를 제외한 모든 문자
-	const result = [];
+function* chunk(size: number, xs: Iterable<string>) {
+	const onlyLowercaseRegex = /^[a-z]+$/;
+	const arr = [...xs];
 
-	for (const [i, char] of [...lowercaseString].entries()) {
-		const newChar = lowercaseString.slice(i, i + 2);
-		const isNotNumber = [...newChar].every((char) =>
-			Number.isNaN(Number(char)),
-		);
-
-		if (
-			!newChar.includes(" ") &&
-			isNotNumber &&
-			newChar.length === 2 &&
-			!specialCharacterRegex.test(newChar)
-		)
-			result.push(newChar);
+	for (const [i, x] of arr.entries()) {
+		const newChar = arr.slice(i, i + size).join("");
+		if (newChar.length === size && onlyLowercaseRegex.test(newChar))
+			yield newChar;
 	}
-	return result;
-};
+}
 
-const getCountMap = (arr: string[]) => {
+function* generateBigrams(string: string) {
+	for (const bigram of chunk(2, string.toLocaleLowerCase())) yield bigram;
+}
+
+const getCountMap = (arr: Iterable<string>) => {
 	const map = new Map();
 
 	for (const string of arr) {
@@ -50,5 +43,3 @@ function solution(str1: string, str2: string) {
 
 	return !unionCount ? 65536 : Math.floor((count / unionCount) * 65536);
 }
-
-// 정확도 92.3
