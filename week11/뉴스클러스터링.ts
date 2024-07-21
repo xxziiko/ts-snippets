@@ -1,18 +1,23 @@
 // https://school.programmers.co.kr/learn/courses/30/lessons/17677
 
 function* chunk(size: number, xs: Iterable<string>) {
-	const onlyLowercaseRegex = /^[a-z]+$/;
-	const arr = [...xs];
+	let newChar = "";
+	for (const x of xs) {
+		newChar += x;
 
-	for (const [i, x] of arr.entries()) {
-		const newChar = arr.slice(i, i + size).join("");
-		if (newChar.length === size && onlyLowercaseRegex.test(newChar))
+		if (newChar.length === size) {
 			yield newChar;
+			newChar = newChar.substring(1);
+		}
 	}
 }
 
 function* generateBigrams(string: string) {
-	for (const bigram of chunk(2, string.toLocaleLowerCase())) yield bigram;
+	const onlyLowercaseRegex = /^[a-z]+$/;
+
+	for (const bigram of chunk(2, string.toLocaleLowerCase())) {
+		if (onlyLowercaseRegex.test(bigram)) yield bigram;
+	}
 }
 
 const getCountMap = (arr: Iterable<string>) => {
@@ -43,3 +48,5 @@ function solution(str1: string, str2: string) {
 
 	return !unionCount ? 65536 : Math.floor((count / unionCount) * 65536);
 }
+
+console.log(solution("FRANCE", "french"));
