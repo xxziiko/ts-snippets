@@ -19,5 +19,3 @@ function solution(n: number, k: number) {
 
 	return count;
 }
-
-console.log(solution(437674, 3));
