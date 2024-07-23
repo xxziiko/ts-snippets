@@ -1,8 +1,10 @@
 // https://school.programmers.co.kr/learn/courses/30/lessons/1844
 
-function solution(maps: [number, number, number, number, number][]) {
+function solution(maps: number[][]) {
 	const rowLen = maps.length;
 	const colLen = maps[0].length;
+	const rowGoal = rowLen - 1;
+	const colGoal = colLen - 1;
 	const direction = [
 		[1, 0],
 		[-1, 0],
@@ -18,7 +20,7 @@ function solution(maps: [number, number, number, number, number][]) {
 			const [row, col, distance] = queue[0];
 
 			// 도착지
-			if (row === rowLen - 1 && col === colLen - 1) return distance;
+			if (row === rowGoal && col === colGoal) return distance;
 
 			for (const [r, c] of direction) {
 				const newRow = row + r;
