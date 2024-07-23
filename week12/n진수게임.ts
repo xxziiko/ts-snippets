@@ -9,10 +9,10 @@ function* champernowneGen(base: number) {
 }
 
 function solution(n: number, t: number, m: number, p: number) {
-	const gen = champernowneGen(n);
+	const champernowneConstant = champernowneGen(n);
 	let result = "";
 
-	for (const string of gen) {
+	for (const string of champernowneConstant) {
 		if (result.length >= t * m) break;
 		result += string;
 	}
