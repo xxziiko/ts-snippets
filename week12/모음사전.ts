@@ -1,18 +1,26 @@
 // https://school.programmers.co.kr/learn/courses/30/lessons/84512
 
+function* genergateWords<T>(
+	letters: Iterable<T>,
+	currentWord = "",
+): Generator<string> {
+	if (currentWord.length > 5) return;
+
+	yield currentWord;
+
+	for (const letter of letters) {
+		yield* genergateWords(letters, currentWord + letter);
+	}
+}
+
 function solution(word: string) {
 	const letters = ["A", "E", "I", "O", "U"];
-	const words: string[] = [];
+	const wordGenerator = genergateWords(letters);
+	const words = [];
 
-	function dfs(currentWord = "") {
-		if (currentWord.length > 5) return;
-		words.push(currentWord);
-		for (const letter of letters) {
-			dfs(currentWord + letter);
-		}
+	for (const a of wordGenerator) {
+		words.push(a);
 	}
-
-	dfs();
 
 	return words.indexOf(word);
 }
