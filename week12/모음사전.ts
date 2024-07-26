@@ -16,11 +16,7 @@ function* genergateWords<T>(
 function solution(word: string) {
 	const letters = ["A", "E", "I", "O", "U"];
 	const wordGenerator = genergateWords(letters);
-	const words = [];
-
-	for (const a of wordGenerator) {
-		words.push(a);
-	}
+	const words = Array.from(wordGenerator);
 
 	return words.indexOf(word);
 }
