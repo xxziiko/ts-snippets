@@ -12,7 +12,7 @@ function solution(numbers: number[]) {
 			max = rest[findIndex];
 			result.push(max);
 		} else {
-			result.push(findIndex);
+			result.push(-1);
 			max = number;
 		}
 	}
